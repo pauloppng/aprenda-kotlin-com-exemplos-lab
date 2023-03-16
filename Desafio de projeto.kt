@@ -5,7 +5,7 @@ open class ConteudoEducacional (vararg nomeCE: String, var duracao: Int)
 
 class Estudantes (val nomeE: String, val idE: Int)
 
-data class Formacao (val nomeF: Sting, val nivelF: Nivel, var ContEdu: List<ConteudoEducacional>)
+data class Formacao (val nomeF: String, val nivelF: Nivel, var ContEdu: List<ConteudoEducacional>)
 
 Estudantes("Paulo", 1)
 Estudantes("Marta", 2)
