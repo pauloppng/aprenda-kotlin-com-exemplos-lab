@@ -1,5 +1,6 @@
 enum class Nivel {BASICO, INTEMEDIARIO, AVANCADO}
 
+
 open class ConteudoEducacional (vararg nomeCE: String, var duracao: Int)
 
 class Estudantes (val nomeE: String, val idE: Int)
@@ -13,9 +14,9 @@ ConteudoEducacional("Aula 2", 4)
 ConteudoEducacional("Aula 3", 3)
 Formacao("Curso de Kotlin", "BASICO")
 
-fun main(){   
+fun main(){
     fun matricular(matriculados:Estudantes){
         vararg matriculados = mutableListOF<Estudantes>()
-        println("Todos os matriculados no curso $nomeCE são: $matriculados") 
+        println("Todos os matriculados no curso $nomeCE são: $matriculados")
     }
 }
