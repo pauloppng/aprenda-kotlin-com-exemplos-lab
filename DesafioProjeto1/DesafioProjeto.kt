@@ -1,22 +1,58 @@
+enum class Nivel{INICIANTE, INTERMEDIARIO, AVANÇADO}
+
+data class Usuario(val nomeU: String, val id: Int)
+
+data class ConteudoEducacional(val nomeC: String, val stack: String, val duracao: Int = 60)
+
+data class Formacao(val nomeF: String, val conteudos: List<ConteudoEducacional>, val nivel: Nivel){
+	
+	val matriculados = mutableListOf<Usuario>()
+
+	infix fun matricular(usuario: Usuario){
+		matriculados.add(usuario)
+	}
+
+	fun matricular(vararg usuarios: Usuario){
+		for (usuario in usuarios) {
+			matriculados.add(usuario)
+		}
+	}
+
+	fun mostrarConteudo(){
+		for (conteudo in conteudos) {
+			println(conteudo.nomeC)
+		}
+	}
+
+	fun mostrarMatriculados(){
+		for (matriculado in matriculados) {
+			println(matriculado.nomeU)
+		}
+	}
+}
+
 fun main(){
 
-    enum class Nivel {BASICO, INTEMEDIARIO, AVANCADO}
+	val paulo = Usuario("Paulo", 21)
+	val vitor = Usuario("Vitor", 12)
+	val boo   = Usuario("Boo", 13)
+	val bla   = Usuario("Bla", 31)
 
-    open class ConteudoEducacional (vararg nomeCE: String, var duracao: Int)
+	val listaConteudoKotlin: List<ConteudoEducacional> = listOf(
+		ConteudoEducacional("Aula 1 ", "Kotlin"),
+		ConteudoEducacional("Aula 2 ", "Kotlin"),
+		ConteudoEducacional("Aula 3 ", "Kotlin")
+	)
 
-    class Estudantes (val nomeE: String, val idE: Int)
+	val kotlin = Formacao("Kotlin", listaConteudoKotlin, Nivel.INICIANTE)
 
-    data class Formacao (val nomeF: String, val nivelF: Nivel, var ContEdu: List<ConteudoEducacional>)
+	kotlin?.let{
+		kotlin.matricular(boo, paulo)
+	} 
 
-    Estudantes("Paulo", 1)
-    Estudantes("Marta", 2)
-    ConteudoEducacional("Intro", 2)
-    ConteudoEducacional("Aula 2", 4)
-    ConteudoEducacional("Aula 3", 3)
-    Formacao("Curso de Kotlin", "BASICO")
-
-        fun matricular(matriculados:Estudantes){
-            matriculados: List  = mutableListOF<Estudantes>()
-            println("Todos os matriculados no curso $nomeCE são: $matriculados")
-        }
+	println("Curso: ${kotlin.nomeF}")
+	println("Conteúdos:")
+	kotlin.mostrarConteudo()
+	println("Estudantes matriculados:")
+	kotlin.mostrarMatriculados()
 }
